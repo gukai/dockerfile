@@ -15,6 +15,6 @@ ADD ssh /root/.ssh/
 RUN chmod 600 /root/.ssh/id_rsa && chmod 644 /root/.ssh/known_hosts
 ADD build_bb.sh /usr/bin/
 
-#VOLUME /root/rpmbuild:/root/rpmbuild/
-CMD /usr/bin/build_bb.sh
+#CMD /usr/bin/build_bb.sh
+ENTRYPOINT ["/usr/bin/build_bb.sh"]
  

@@ -1,0 +1,4 @@
+用以保存Dockerfile
+baseimage: 创建baseimage的脚本.
+cobbler：cobbler的自动搭建，以centos6.5为base.
+compile: 用以搭建openstack的自动编译环境.

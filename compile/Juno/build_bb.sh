@@ -1,10 +1,11 @@
 #!/bin/bash
 #os_version is the openstack version, icehouse set master, juno set juno.
-os_version="master"
+os_version="juno"
 git_home="/tmp/openstack-sn"
 now_dir=`pwd`
 build_dir="/root/rpmbuild/"
 projs="openstack-ceilometer python-ceilometerclient openstack-cinder python-cinderclient openstack-glance python-glanceclient openstack-heat python-heatclient python-django-horizon openstack-keystone python-keystoneclient openstack-nova python-novaclient openstack-neutron python-neutronclient openstack-sahara python-saharaclient openstack-trove python-troveclient python-oslo-messaging"
+
 
 clean_build_env(){
 
@@ -23,6 +24,7 @@ clean_git_env(){
     fi
     mkdir -p $git_home
 }
+
 
 get_clr_proj(){
     local proj="$1"
@@ -55,7 +57,7 @@ get_git_code(){
 
     cd ${git_home}/${proj}/
 
-    git checkout master
+    git checkout $os_version
     if [ "$?" != "0" ];then
       echo "error while git checkout master $proj"
       exit 1
@@ -103,5 +105,4 @@ for proj in $projs; do
     set_build_env $proj
     real_build $proj
 done
-
 cd $now_dir
