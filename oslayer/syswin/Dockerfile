@@ -1,4 +1,4 @@
-#version: 0.2
+#version: 0.3
 #oslayer:version
 #docker build -t="oslayer:version" .
 #docker save dockerbase > oslayer-version.tar
@@ -49,7 +49,7 @@ RUN echo 'LANG="en_US.UTF-8"' > /etc/sysconfig/i18n
 
 #init script and command.
 RUN mkdir -p /var/log/supervisor
-RUN cp /tmp/startup.sh /bin/startup.sh
+RUN cp /tmp/startup.sh /bin/startup.sh && chkmod +x /bin/startup.sh
 CMD /bin/startup.sh && sysctl -p && supervisord
 
 #clean
