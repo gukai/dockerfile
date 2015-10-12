@@ -1,2 +1,4 @@
 *.rpm
 *.tar
+*.tar.gz
+*bak
