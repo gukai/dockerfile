@@ -43,7 +43,6 @@ RUN cp /tmp/90-nproc.conf /etc/security/limits.d/90-nproc.conf
 #config supervisord
 RUN rpm -ivh /tmp/supervisor-2.1-8.el6.noarch.rpm /tmp/python-meld3-0.6.7-1.el6.x86_64.rpm && cp /tmp/supervisord.conf /etc/supervisord.conf
 
-RUN adduser java
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'LANG="en_US.UTF-8"' > /etc/sysconfig/i18n
 

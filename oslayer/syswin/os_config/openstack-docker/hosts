@@ -1,10 +1,4 @@
-#127.0.0.1	localhost
-10.27.180.71  fcpreapp01 fcpreapp01.cnsuning.com 
-10.27.180.72  fcpreweb01 fcpreweb01.cnsuning.com 
-10.27.180.74  fcpreapp02 fcpreapp02.cnsuning.com 
-10.27.180.75  fcpreapp05 fcpreapp05.cnsuning.com 
-10.27.180.76  fcpreapp04 fcpreapp04.cnsuning.com 
-10.27.180.77  fcpreapp03 fcpreapp03.cnsuning.com 
+127.0.0.1	localhost
 ::1	localhost ip6-localhost ip6-loopback
 fe00::0	ip6-localnet
 ff00::0	ip6-mcastprefix
