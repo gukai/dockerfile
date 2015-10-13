@@ -1,4 +1,4 @@
-#version: 0.3
+#version: 0.4
 #oslayer:version
 #docker build -t="oslayer:version" .
 #docker save dockerbase > oslayer-version.tar
@@ -36,6 +36,10 @@ RUN ssh-keygen -q -N "" -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN sed -i 's/PASS_MAX_DAYS.*/PASS_MAX_DAYS  180/' /etc/login.defs
 RUN sed -i 's/PASS_MIN_LEN.*/PASS_MIN_LEN  8/' /etc/login.defs
 RUN sed -i 's/HISTSIZE=1000/HISTSIZE=100/' /etc/profile
+
+#Intrusion Detection
+ADD safe/ossec-client.tar.gz /usr/local
+RUN useradd -d /usr/local/ossec -s /sbin/nologin ossec && chown -R ossec.ossec /usr/local/ossec-client
 
 
 #set ulimit
