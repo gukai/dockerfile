@@ -5,6 +5,8 @@ hostname_file="/etc/hostname"
 sysctl_file="/etc/sysctl.conf"
 docker_conf_dir="/etc/openstack-docker"
 log_file="/var/log/startup.log"
+init_spt_dir="/etc/rc_docker_init/"
+exec_spt_dir="/etc/rc_docker_exec"
 
 echo `date` " Start to startup the docker container." >> $log_file
 
@@ -32,5 +34,18 @@ if [ -f ${docker_conf_dir}/sysctl.conf ];then
     cat ${docker_conf_dir}/sysctl.conf > ${sysctl_file}
     echo `date` " reset sysctl to $sysctl_file" >> $log_file
 fi
+
+for script in `ls $init_spt_dir`; do  
+    if [ -x $init_spt_dir/$script ]; then 
+        eval $init_spt_dir/$script
+    fi
+done
+rm -rf $exec_spt_dir/*
+
+for script in `ls $exec_spt_dir`; do  
+    if [ -x $exec_spt_dir/$script ]; then 
+        eval $exec_spt_dir/$script
+    fi
+done
 
 echo `date` " Finish start Docker contianer.:)" >> $log_file

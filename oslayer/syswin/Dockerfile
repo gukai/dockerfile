@@ -61,8 +61,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'LANG="en_US.UTF-8"' > /etc/sysconfig/i18n
 
 #init script and command.
-RUN mkdir -p /var/log/supervisor
-RUN cp /tmp/startup.sh /bin/startup.sh && chkmod +x /bin/startup.sh
+RUN mkdir -p /var/log/supervisor && mkdir -p /etc/openstack-docker
+RUN cp /tmp/startup.sh /bin/startup.sh && chmod +x /bin/startup.sh
 CMD /bin/startup.sh && sysctl -p && supervisord
 
 #clean
