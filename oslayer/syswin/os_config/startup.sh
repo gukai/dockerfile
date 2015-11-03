@@ -11,7 +11,8 @@ exec_spt_dir="/etc/rc_docker_exec"
 echo `date` " Start to startup the docker container." >> $log_file
 
 if [ ! -d $docker_conf_dir ]; then
-    echo `date` " ERROR: $docker_conf_dir is not exist." >> $log_file
+    echo `date` " Warning: $docker_conf_dir is not exist, create it now." >> $log_file
+    mkdir -p $docker_conf_dir
 fi
 
 if [ -f ${docker_conf_dir}/hosts ];then
