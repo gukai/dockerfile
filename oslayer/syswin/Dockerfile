@@ -1,4 +1,4 @@
-#version: 0.8
+#version: 0.9
 #oslayer:version
 #docker build -t="oslayer:version" .
 #docker save dockerbase > oslayer-version.tar
@@ -61,8 +61,10 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'LANG="en_US.UTF-8"' > /etc/sysconfig/i18n
 
 #init script and command.
-RUN mkdir -p /var/log/supervisor && mkdir -p /etc/openstack-docker
+RUN mkdir -p /var/log/supervisor && mkdir -p /etc/openstack-docker && mkdir -p /etc/rc_docker_init && mkdir -p /etc/rc_docker_exec
 RUN cp /tmp/startup.sh /bin/startup.sh && chmod +x /bin/startup.sh
+#ADD INIT SCRIPT
+ADD init /etc/rc_docker_init/
 #CMD /bin/startup.sh && sysctl -p && supervisord
 CMD /bin/startup.sh && supervisord
 
