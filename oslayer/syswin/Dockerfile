@@ -11,6 +11,7 @@ RUN mkdir -p /etc/rc_docker_init && mkdir -p /etc/rc_docker_exec
 ADD os_config /tmp/
 ADD RPMS /tmp/
 ADD init /etc/rc_docker_init/
+RUN chmod +x /etc/rc_docker_init/* && chmod +x /etc/rc_docker_exec/*
 
 #install RPMs necessarily
 #RUN yum install -y python-crypto python-babel pciutils libyaml yum-utils libyaml zeromq3 python-jinja2 python-msgpack PyYAML salt-minion python-zmq salt sshpass wget tar perl unzip
