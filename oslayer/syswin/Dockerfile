@@ -7,8 +7,10 @@ From centos65:v1
 MAINTAINER gukai gushenbusi@gmail.com
 
 #add codes/packages/configurations
+RUN mkdir -p /etc/rc_docker_init && mkdir -p /etc/rc_docker_exec
 ADD os_config /tmp/
 ADD RPMS /tmp/
+ADD init /etc/rc_docker_init/
 
 #install RPMs necessarily
 #RUN yum install -y python-crypto python-babel pciutils libyaml yum-utils libyaml zeromq3 python-jinja2 python-msgpack PyYAML salt-minion python-zmq salt sshpass wget tar perl unzip
@@ -61,10 +63,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'LANG="en_US.UTF-8"' > /etc/sysconfig/i18n
 
 #init script and command.
-RUN mkdir -p /var/log/supervisor && mkdir -p /etc/openstack-docker && mkdir -p /etc/rc_docker_init && mkdir -p /etc/rc_docker_exec
+RUN mkdir -p /var/log/supervisor && mkdir -p /etc/openstack-docker
 RUN cp /tmp/startup.sh /bin/startup.sh && chmod +x /bin/startup.sh
-#ADD INIT SCRIPT
-ADD init /etc/rc_docker_init/
 #CMD /bin/startup.sh && sysctl -p && supervisord
 CMD /bin/startup.sh && supervisord
 
