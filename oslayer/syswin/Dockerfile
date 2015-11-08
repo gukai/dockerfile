@@ -1,4 +1,4 @@
-#version: 0.7
+#version: 0.8
 #oslayer:version
 #docker build -t="oslayer:version" .
 #docker save dockerbase > oslayer-version.tar

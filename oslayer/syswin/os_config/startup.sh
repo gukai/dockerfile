@@ -41,7 +41,7 @@ for script in `ls $init_spt_dir`; do
         eval $init_spt_dir/$script
     fi
 done
-rm -rf $exec_spt_dir/*
+rm -rf $init_spt_dir/*
 
 for script in `ls $exec_spt_dir`; do  
     if [ -x $exec_spt_dir/$script ]; then 
