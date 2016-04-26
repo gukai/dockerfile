@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis-cluster
+  labels:
+    name: redis-cluster
+spec:
+  replicas: 6
+  selector:
+    name: redis-cluster
+  template:
+    metadata:
+      labels:
+        name: redis-cluster
+    spec:
+      containers:
+      - name: cluster
+        image: redis-3.0.7:v4
+        env:
+        - name: redis_type
+          value: cluster
+        args: 
+        - --loglevel debug
+        ports:
+        - containerPort: 6379
