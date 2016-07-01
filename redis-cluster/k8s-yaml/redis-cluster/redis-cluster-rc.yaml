@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cluster
-        image: redis-3.0.7:v4
+        image: redis-3.0.7:v5
         env:
         - name: redis_type
           value: cluster
