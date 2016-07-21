@@ -1,0 +1,34 @@
+# Apache Zookeeper
+
+FROM debian
+
+ENV ZOOKEEPER_VERSION 3.4.5
+
+RUN apt-get update && \
+apt-get install -y curl openjdk-7-jre-headless
+
+COPY zookeeper-3.4.5.tar.gz /opt/
+RUN tar xzf /opt/zookeeper-3.4.5.tar.gz -C /opt && \
+mv /opt/zookeeper-3.4.5 /opt/zookeeper
+#mv /opt/zookeeper-3.4.5 /opt/zookeeper && \
+#chown -R root:root /opt/zookeeper
+
+RUN groupadd -r zookeeper \
+  && useradd -c "Zookeeper" -d /var/lib/zookeeper -g zookeeper -M -r -s /sbin/nologin zookeeper \
+  && mkdir /var/lib/zookeeper \
+  && chown -R zookeeper:zookeeper /var/lib/zookeeper
+#  && chown -R zookeeper:zookeeper /opt/zookeeper
+
+EXPOSE 2181 2888 3888
+
+#VOLUME ["/opt/zookeeper/conf", "/var/lib/zookeeper"]
+#VOLUME ["/home/yuan/app/dockerfile/zookeeper/share", "/var/lib/zookeeper"]
+VOLUME /opt/zookeeper /var/lib/zookeeper
+
+ENV ZOOKEEPER_SERVER_1=172.31.31.56
+ENV ZOOKEEPER_SERVER_2=172.31.31.57
+ENV ZOOKEEPER_SERVER_3=172.31.31.58
+
+COPY start.sh /usr/local/sbin/start.sh
+RUN chmod +x /usr/local/sbin/start.sh
+ENTRYPOINT ["/usr/local/sbin/start.sh"]
