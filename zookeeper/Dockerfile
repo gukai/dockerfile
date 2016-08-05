@@ -25,9 +25,6 @@ EXPOSE 2181 2888 3888
 #VOLUME ["/home/yuan/app/dockerfile/zookeeper/share", "/var/lib/zookeeper"]
 VOLUME /opt/zookeeper /var/lib/zookeeper
 
-ENV ZOOKEEPER_SERVER_1=172.31.31.56
-ENV ZOOKEEPER_SERVER_2=172.31.31.57
-ENV ZOOKEEPER_SERVER_3=172.31.31.58
 
 COPY start.sh /usr/local/sbin/start.sh
 RUN chmod +x /usr/local/sbin/start.sh
