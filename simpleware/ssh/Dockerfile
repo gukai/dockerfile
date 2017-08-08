@@ -26,4 +26,6 @@ RUN mkdir -p /root/.ssh && chown root.root /root \
 	&& sed  -i "/^[^#]*PermitRootLogin/ s/.*/#&/"  /etc/ssh/sshd_config && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 EXPOSE 22
+# insteall supervisord conf
+RUN cp $HOME/sshd.conf /etc/supervisor/conf.d/ssh.conf
 ENTRYPOINT $HOME/startup.sh
