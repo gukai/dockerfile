@@ -23,9 +23,8 @@ RUN mkdir -p /root/.ssh && chown root.root /root \
 	&& touch /root/.ssh/authorized_keys \
 	&& chmod 600 /root/.ssh/authorized_keys \
         && mkdir -p /var/run/sshd \
-	&& sed  -i "/^[^#]*PermitRootLogin/ s/.*/#&/"  /etc/ssh/sshd_config && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+	&& sed  -i "/^[^#]*PermitRootLogin/ s/.*/#&/"  /etc/ssh/sshd_config && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config \
+	&& cp $HOME/sshd.conf /etc/supervisor/conf.d/ssh.conf
 
 EXPOSE 22
-# insteall supervisord conf
-RUN cp $HOME/sshd.conf /etc/supervisor/conf.d/ssh.conf
 ENTRYPOINT $HOME/startup.sh
