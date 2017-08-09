@@ -5,13 +5,13 @@ MAINTAINER Wen Chou "gukai@simpleware.com.cn"
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /usr/sbin/simpleware
-ENV NO_VNC_HOME $HOME/noNVC
 ENV SSH_PW sshpassowrd
+RUN mkdir -p $HOME
+COPY src $HOME
+ENV NO_VNC_HOME $HOME/noNVC
 ENV VNC_PW vncpassword
 ENV VNC_PORT 5900
 ENV NO_VNC_PORT 6900
-RUN mkdir -p $HOME
-COPY src $HOME
 
 # init baes env 
 RUN chmod +x $HOME/startup.sh \
@@ -23,9 +23,11 @@ RUN apt-get update \
 RUN apt-get install -y \ 
 	apt-utils python supervisor vim-tiny openssh-server sshpass wget net-tools
 
-RUN apt-get install -y xfce4 firefox xterm 
-
-RUN apt-get install -y x11vnc xvfb
+RUN apt-get install -y \
+        # xfce and destop app.
+        xfce4 xfce4-goodies firefox xterm \
+        # vncserver
+        x11vnc xvfb xserver-xorg-core xinit
 
 # config vnc
 RUN cp $HOME/xvnc.conf /etc/supervisor/conf.d/xvnc.conf \
