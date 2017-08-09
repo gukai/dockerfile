@@ -2,6 +2,8 @@ FROM ubuntu:16.04
 
 MAINTAINER Wen Chou "gukai@simpleware.com.cn"
 
+ENV TERM linux
+ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /usr/sbin/simpleware
 ENV SSH_PW sshpassowrd
 RUN mkdir -p $HOME 

@@ -9,7 +9,7 @@ ENV SSH_PW sshpassowrd
 RUN mkdir -p $HOME
 COPY src $HOME
 
-# init baes env 
+# init base env 
 RUN chmod +x $HOME/startup.sh \
         && cp $HOME/sources.list /etc/apt/sources.list
 
@@ -22,10 +22,10 @@ RUN apt-get install -y \
 RUN apt-get install -y \
 	# xfce and destop app.
 	xfce4 xfce4-goodies firefox xterm \ 
-	# xrdp
-	xrdp lxde lxdm \
 	# vncserver
-	x11vnc xvfb xserver-xorg-core xinit
+	x11vnc xvfb xserver-xorg-core xinit \
+	# xrdp
+	xrdp lxde lxdm
 
 # config xrdp
 RUN useradd -mp pasl8SZvzQP6k -s /bin/bash -G sudo sw
