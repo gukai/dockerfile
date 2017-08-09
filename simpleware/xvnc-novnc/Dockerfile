@@ -37,7 +37,8 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
         && wget --no-check-certificate -qO- https://github.com/kanaka/websockify/archive/v0.8.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
         && chmod +x -v $NO_VNC_HOME/utils/*.sh \
         ## create index.html to forward automatically to `vnc_auto.html`
-        && ln -s $NO_VNC_HOME/vnc_auto.html $NO_VNC_HOME/index.html
+        && ln -s $NO_VNC_HOME/vnc_auto.html $NO_VNC_HOME/index.html \
+	&& cp $HOME/novnc.conf /etc/supervisor/conf.d/novnc.conf
 
 EXPOSE $VNC_PORT
 EXPOSE $NO_VNC_PORT
