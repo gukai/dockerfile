@@ -19,12 +19,13 @@ RUN apt-get update \
 RUN apt-get install -y \ 
 	apt-utils python supervisor vim-tiny openssh-server sshpass wget
 
-RUN apt-get install -y xrdp lxde lxdm 
-
-RUN apt-get install -y xfce4 xfce4-goodies firefox xterm 
-
-RUN apt-get install -y xserver-xorg-core xinit
-RUN apt-get install -y x11vnc xvfb
+RUN apt-get install -y \
+	# xfce and destop app.
+	xfce4 xfce4-goodies firefox xterm \ 
+	# xrdp
+	xrdp lxde lxdm \
+	# vncserver
+	x11vnc xvfb xserver-xorg-core xinit
 
 # config xrdp
 RUN useradd -mp pasl8SZvzQP6k -s /bin/bash -G sudo sw
