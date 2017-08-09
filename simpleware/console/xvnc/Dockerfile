@@ -5,7 +5,7 @@ MAINTAINER Wen Chou "gukai@simpleware.com.cn"
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /usr/sbin/simpleware
-ENV SSH_PW sshpassowrd
+ENV SSH_PW sshpassoword
 RUN mkdir -p $HOME
 COPY src $HOME
 
@@ -19,7 +19,7 @@ RUN apt-get update \
 RUN apt-get install -y \ 
 	apt-utils python supervisor vim-tiny openssh-server sshpass wget
 
-RUN apt-get install -y xfce4 firefox xterm 
+RUN apt-get install -y xfce4 firefox xterm xfonts-wqy 
 
 RUN apt-get install -y x11vnc xvfb
 

@@ -5,7 +5,7 @@ MAINTAINER Wen Chou "gukai@simpleware.com.cn"
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /usr/sbin/simpleware
-ENV SSH_PW sshpassowrd
+ENV SSH_PW sshpassoword
 RUN mkdir -p $HOME
 COPY src $HOME
 ENV NO_VNC_HOME $HOME/noNVC
@@ -25,7 +25,7 @@ RUN apt-get install -y \
 
 RUN apt-get install -y \
         # xfce and destop app.
-        xfce4 xfce4-goodies firefox xterm \
+        xfce4 xfce4-goodies firefox xterm xfonts-wqy\
         # vncserver
         x11vnc xvfb xserver-xorg-core xinit
 
