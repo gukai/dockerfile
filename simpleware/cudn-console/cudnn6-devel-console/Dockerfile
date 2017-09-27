@@ -21,7 +21,7 @@ RUN apt-get update \
         && apt-get install -y apt-utils dialog
 
 RUN apt-get install -y \ 
-	apt-utils python supervisor vim-tiny openssh-server sshpass wget net-tools
+	apt-utils python supervisor vim openssh-server sshpass wget net-tools
 
 # xfce and destop app.
 RUN apt-get install -y xfce4 xfce4-goodies firefox xterm xfonts-wqy
@@ -40,6 +40,10 @@ RUN mkdir -p /root/.ssh && chown root.root /root \
         && mkdir -p /var/run/sshd \
         && sed  -i "/^[^#]*PermitRootLogin/ s/.*/#&/"  /etc/ssh/sshd_config && echo "PermitRootLogin yes" >> /etc/ssh/sshd_config \
         && cp $HOME/sshd.conf /etc/supervisor/conf.d/ssh.conf
+
+# config xfce4 
+RUN /bin/cp -rf $HOME/xfce-ui/Desktop $HOME/xfce-ui/.config /root/ \
+	&& chmod +x /root/Desktop/*.desktop
 
 # config vnc
 RUN cp $HOME/xvnc.conf /etc/supervisor/conf.d/xvnc.conf \
